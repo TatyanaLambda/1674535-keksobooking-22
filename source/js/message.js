@@ -13,19 +13,14 @@ const onSuccessMessageWindowClick = (evt) => {
   closeSuccessMessage();
 };
 
-const onErrorMessageEscKeydown = (evt) => {
+const onErrorEscKeydown = (evt) => {
   if (isEscEvent) {
     evt.preventDefault();
     closeErrorMessage();
   }
 };
 
-const onErrorMessageWindowClick = (evt) => {
-  evt.preventDefault();
-  closeErrorMessage();
-};
-
-const onErrorButtonClick = (evt) => {
+const onErrorClick = (evt) => {
   evt.preventDefault();
   closeErrorMessage();
 };
@@ -40,9 +35,9 @@ const closeSuccessMessage = () => {
 const closeErrorMessage = () => {
   const errorContent = document.querySelector('.error');
   const errorButton = document.querySelector('.error__button');
-  document.removeEventListener('keydown', onErrorMessageEscKeydown);
-  window.removeEventListener('click', onErrorMessageWindowClick);
-  errorButton.removeEventListener('click', onErrorButtonClick);
+  document.removeEventListener('keydown', onErrorEscKeydown);
+  window.removeEventListener('click', onErrorClick);
+  errorButton.removeEventListener('click', onErrorClick);
   errorContent.remove();
 };
 
@@ -62,7 +57,7 @@ const showErrorMessage = () => {
   const errorMessage = errorTemplate.cloneNode(true);
   main.prepend(errorMessage);
   const errorButton = document.querySelector('.error__button');
-  document.addEventListener('keydown', onErrorMessageEscKeydown);
-  window.addEventListener('click', onErrorMessageWindowClick);
-  errorButton.addEventListener('click', onErrorButtonClick);
+  document.addEventListener('keydown', onErrorEscKeydown);
+  window.addEventListener('click', onErrorClick);
+  errorButton.addEventListener('click', onErrorClick);
 };
