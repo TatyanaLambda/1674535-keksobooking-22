@@ -1,7 +1,6 @@
 import {isEscEvent} from './util.js'
 export {showSuccessMessage, showErrorMessage};
 
-
 const onSuccessMessageEscKeydown = (evt) => {
   if (isEscEvent) {
     evt.preventDefault();
