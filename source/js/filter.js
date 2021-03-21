@@ -12,8 +12,8 @@ const housingType = document.querySelector('#housing-type');
 const housingPrice = document.querySelector('#housing-price');
 const housingRooms = document.querySelector('#housing-rooms');
 const housingGuests = document.querySelector('#housing-guests');
-const mapFilters = document.querySelector('.map__filter');
-const mapFeatures = document.querySelector('.map__features');
+const mapFilters = document.querySelectorAll('.map__filter');
+const mapFeatures = document.querySelectorAll('.map__features');
 
 const getFilteredPoints = (points) => {
 
@@ -56,15 +56,25 @@ const getFilteredPoints = (points) => {
 };
 
 const setFilter = (cb) => {
-  mapFilters.addEventListener('change', () => cb());
-  mapFeatures.addEventListener('change', () => cb());
+  mapFilters.forEach(element => {
+    element.addEventListener('change', () => cb());
+  });
+  mapFeatures.forEach(element => {
+    element.addEventListener('change', () => cb());
+  });
 };
 
 const resetFilter = () => {
   const event = new Event('change');
   const checkedFeatures = document.querySelectorAll('.map__features input:checked');
-  mapFilters.value = DEFAULT_SELECT_FILTER;
-  checkedFeatures.checked = false;
-  mapFilters.dispatchEvent(event);
-  checkedFeatures.dispatchEvent(event);
+
+  mapFilters.forEach(element => {
+    element.value = DEFAULT_SELECT_FILTER;
+    element.dispatchEvent(event);
+  });
+  
+  checkedFeatures.forEach(element => {
+    element.checked = false;
+    element.dispatchEvent(event);
+  });
 };
