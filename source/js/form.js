@@ -1,4 +1,5 @@
 import {sendData} from './api.js';
+import {resetFilter} from './filter.js';
 import {resetMap} from './map.js';
 import {defaultForm} from './settings.js';
 export {setUserFormSubmit, resetForm};
@@ -138,5 +139,6 @@ adFormResetBtn.addEventListener('click', (evt) => {
   evt.preventDefault();
   resetForm();
   resetMap();
+  resetFilter();
 });
 

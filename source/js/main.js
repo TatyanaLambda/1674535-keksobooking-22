@@ -6,7 +6,7 @@ import {createPoints, resetMap, updatePoints} from './map.js';
 import {getData} from './api.js';
 import {resetForm, setUserFormSubmit} from './form.js';
 import {showSuccessMessage, showErrorMessage} from './message.js';
-import {setFilter} from './filter.js';
+import {setFilter, resetFilter} from './filter.js';
 import {setActiveForm} from './settings.js';
 export {POINTS_COUNT};
 const POINTS_COUNT = 10;
@@ -22,6 +22,7 @@ const successHandler = () => {
   showSuccessMessage();
   resetMap();
   resetForm();
+  resetFilter();
 }
 
 setUserFormSubmit(successHandler, showErrorMessage);

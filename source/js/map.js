@@ -1,7 +1,7 @@
 /* global L:readonly */
 import {createCard} from './card.js';
 import {setActiveForm} from './settings.js';
-import {filter} from './filter.js';
+import {getFilteredPoints} from './filter.js';
 export {createPoints, resetMap, updatePoints};
 
 const CENTER_LATITUDE = 35.68170;
@@ -9,7 +9,6 @@ const CENTER_LONGITUDE = 139.75388;
 const SCALE = 13;
 const MAP = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 const COPY_WRITE = '&copy; <a rel="nofollow" href="http://osm.org/copyright">OpenStreetMap</a> contributors';
-const MAIN_TITLE = 'Моё объявление';
 
 const mainIconParameters = {
   width: 52,
@@ -61,10 +60,6 @@ const mainMarker = L.marker(
 );
 
 mainMarker.addTo(map)
-  .bindPopup(MAIN_TITLE,
-    {
-      keepInView: true,
-    })
   .on('moveend', (evt) => {
     const coordinates = evt.target.getLatLng();
     address.value = `${coordinates.lat.toFixed(5)}, ${coordinates.lng.toFixed(5)}`;
@@ -107,6 +102,6 @@ const resetMarkers = () => {
 
 const updatePoints = (points) => {
   resetMarkers();
-  const filteredPoints = filter(points);
+  const filteredPoints = getFilteredPoints(points);
   createPoints(filteredPoints);
 };

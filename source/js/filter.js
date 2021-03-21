@@ -1,18 +1,7 @@
-export {setFilter, filter};
+export {setFilter, resetFilter, getFilteredPoints};
 import {POINTS_COUNT} from './main.js';
 
-const defaultFilter = {
-  housingType: 'any',
-  housingPrice: 'any',
-  housingRooms: 'any',
-  housingGuests: 'any',
-  wifi: false,
-  dishwasher: false,
-  parking: false,
-  washer: false,
-  elevator: false,
-  conditioner: false,
-};
+const DEFAULT_SELECT_FILTER = 'any';
 
 const priceRange = {
   low: 10000,
@@ -23,16 +12,18 @@ const housingType = document.querySelector('#housing-type');
 const housingPrice = document.querySelector('#housing-price');
 const housingRooms = document.querySelector('#housing-rooms');
 const housingGuests = document.querySelector('#housing-guests');
+const mapFilters = document.querySelector('.map__filter');
 const mapFeatures = document.querySelector('.map__features');
 
-const filter = (points) => {
+const getFilteredPoints = (points) => {
+
   let filteredPoints = points.slice();
 
-  if (housingType.value !== defaultFilter.housingType) {
+  if (housingType.value !== DEFAULT_SELECT_FILTER) {
     filteredPoints = filteredPoints.filter((point) => point.offer.type === housingType.value);
   }
 
-  if (housingPrice.value !== defaultFilter.housingPrice) {
+  if (housingPrice.value !== DEFAULT_SELECT_FILTER) {
     switch (housingPrice.value){
       case 'low':
         filteredPoints = filteredPoints.filter((point) => point.offer.price < priceRange.low);
@@ -48,11 +39,11 @@ const filter = (points) => {
     }
   }
 
-  if (housingRooms.value !== defaultFilter.housingRooms) {
+  if (housingRooms.value !== DEFAULT_SELECT_FILTER) {
     filteredPoints = filteredPoints.filter((point) => point.offer.rooms.toString() === housingRooms.value);
   }
 
-  if (housingGuests.value !== defaultFilter.housingGuests) {
+  if (housingGuests.value !== DEFAULT_SELECT_FILTER) {
     filteredPoints = filteredPoints.filter((point) => point.offer.guests.toString() === housingGuests.value);
   }
 
@@ -65,9 +56,15 @@ const filter = (points) => {
 };
 
 const setFilter = (cb) => {
-  housingType.addEventListener('change', () => cb());
-  housingPrice.addEventListener('change', () => cb());
-  housingRooms.addEventListener('change', () => cb());
-  housingGuests.addEventListener('change', () => cb());
+  mapFilters.addEventListener('change', () => cb());
   mapFeatures.addEventListener('change', () => cb());
+};
+
+const resetFilter = () => {
+  const event = new Event('change');
+  const checkedFeatures = document.querySelectorAll('.map__features input:checked');
+  mapFilters.value = DEFAULT_SELECT_FILTER;
+  checkedFeatures.checked = false;
+  mapFilters.dispatchEvent(event);
+  checkedFeatures.dispatchEvent(event);
 };
