@@ -1,14 +1,14 @@
 import {isEscEvent} from './util.js'
 export {showSuccessMessage, showErrorMessage};
 
-const onSuccessMessageEscKeydown = (evt) => {
+const onSuccessEscKeydown = (evt) => {
   if (isEscEvent) {
     evt.preventDefault();
     closeSuccessMessage();
   }
 };
 
-const onSuccessMessageWindowClick = (evt) => {
+const onSuccessClick = (evt) => {
   evt.preventDefault();
   closeSuccessMessage();
 };
@@ -27,8 +27,8 @@ const onErrorClick = (evt) => {
 
 const closeSuccessMessage = () => {
   const successContent = document.querySelector('.success');
-  document.removeEventListener('keydown', onSuccessMessageEscKeydown);
-  window.removeEventListener('click', onSuccessMessageWindowClick);
+  document.removeEventListener('keydown', onSuccessEscKeydown);
+  window.removeEventListener('click', onSuccessClick);
   successContent.remove();
 };
 
@@ -46,9 +46,8 @@ const showSuccessMessage = () => {
   const successTemplate = document.querySelector('#success').content;
   const successMessage = successTemplate.cloneNode(true);
   main.prepend(successMessage);
-  document.addEventListener('keydown', onSuccessMessageEscKeydown);
-  window.addEventListener('click', onSuccessMessageWindowClick);
-
+  document.addEventListener('keydown', onSuccessEscKeydown);
+  window.addEventListener('click', onSuccessClick);
 };
 
 const showErrorMessage = () => {
