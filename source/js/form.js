@@ -66,27 +66,27 @@ roomNumber.addEventListener('change', () => {
   switch (selectedRoomNumber){
     case '1':
       capacities.forEach(element => {
-        (element.value != 1) ? element.disabled = true : element.disabled = false;
+        (element.value !== 1) ? element.disabled = true : element.disabled = false;
       });
-      (selectedCapacity!=1) ? capacity.setCustomValidity(ROOM_NUNBER_ERROR_TEXT) : capacity.setCustomValidity('');
+      (selectedCapacity !==1 ) ? capacity.setCustomValidity(ROOM_NUNBER_ERROR_TEXT) : capacity.setCustomValidity('');
       break;
     case '2':
       capacities.forEach(element => {
-        (element.value != 1 && element.value != 2) ? element.disabled = true : element.disabled = false;
+        (element.value !== 1 && element.value !== 2) ? element.disabled = true : element.disabled = false;
       });
-      (selectedCapacity!=1 && selectedCapacity!=2) ? capacity.setCustomValidity(ROOM_NUNBER_ERROR_TEXT) : capacity.setCustomValidity('');
+      (selectedCapacity !== 1 && selectedCapacity !== 2) ? capacity.setCustomValidity(ROOM_NUNBER_ERROR_TEXT) : capacity.setCustomValidity('');
       break;
     case '3':
       capacities.forEach(element => {
-        (element.value != 1 && element.value != 2 && element.value != 3) ? element.disabled = true : element.disabled = false;
+        (element.value !== 1 && element.value !== 2 && element.value !== 3) ? element.disabled = true : element.disabled = false;
       });
-      (selectedCapacity != 1 && selectedCapacity != 2 && selectedCapacity != 3) ? capacity.setCustomValidity(ROOM_NUNBER_ERROR_TEXT) : capacity.setCustomValidity('');
+      (selectedCapacity !== 1 && selectedCapacity !== 2 && selectedCapacity !== 3) ? capacity.setCustomValidity(ROOM_NUNBER_ERROR_TEXT) : capacity.setCustomValidity('');
       break;
     case '100':
       capacities.forEach(element => {
-        (element.value != 0) ? element.disabled = true : element.disabled = false;
+        (element.value !== 0) ? element.disabled = true : element.disabled = false;
       });
-      (selectedCapacity != 0) ? capacity.setCustomValidity(ROOM_NUNBER_ERROR_TEXT) : capacity.setCustomValidity('');
+      (selectedCapacity !== 0) ? capacity.setCustomValidity(ROOM_NUNBER_ERROR_TEXT) : capacity.setCustomValidity('');
       break;
   }
   capacity.reportValidity();

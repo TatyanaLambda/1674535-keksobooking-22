@@ -18,11 +18,11 @@ getData((points) => {
   setFilter(_.debounce(() => updatePoints(points), RERENDER_DELAY));
 });
 
-const successHandler = () => {
+const handleSuccess = () => {
   showSuccessMessage();
   resetMap();
   resetForm();
   resetFilter();
 }
 
-setUserFormSubmit(successHandler, showErrorMessage);
+setUserFormSubmit(handleSuccess, showErrorMessage);

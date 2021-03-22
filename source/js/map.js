@@ -37,15 +37,15 @@ const map = L.map('map-canvas')
 L.tileLayer(MAP, {attribution: COPY_WRITE}).addTo(map);
 
 const mainIcon = L.icon({
-  iconUrl: mainIconParameters.url,
-  iconSize: [mainIconParameters.width, mainIconParameters.heigth],
-  iconAnchor: [mainIconParameters.width/2, mainIconParameters.heigth],
+  Url: mainIconParameters.url,
+  Sizes: [mainIconParameters.width, mainIconParameters.heigth],
+  Anchors: [mainIconParameters.width/2, mainIconParameters.heigth],
 });
 
 const icon = L.icon({
-  iconUrl: iconParameters.url,
-  iconSize: [iconParameters.width, iconParameters.heigth],
-  iconAnchor: [iconParameters.width/2, iconParameters.heigth],
+  Url: iconParameters.url,
+  Sizes: [iconParameters.width, iconParameters.heigth],
+  Anchors: [iconParameters.width/2, iconParameters.heigth],
 });
 
 const mainMarker = L.marker(
